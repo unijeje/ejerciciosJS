@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Sin título 2</title>
+<style>
+    div{
+        width:200px;
+        height:200px;
+        float:left;
+    }
+    p{
+        clear:both;
+    }
+</style>
+</head>
+<body>
+    <div id="origen">
+        <ul>
+            <li>Uno</li>
+            <li>Dos</li>
+            <li>Tres</li>
+        </ul>
+    </div>
+    <div id="destino">
+        <ul>
+<!--        <li>Cuatro</li>
+            <li>Cinco</li>
+            <li>Seis</li>
+-->
+        </ul>
+    </div>
+    <p>Copiar</p>
+    <input type="checkbox" name="checkbox" />
+
+    <script type="text/javascript">
+        var oOrigen=document.getElementById("origen");
+        var oDestino=document.getElementById("destino");
+        var oListaOrigen=oOrigen.querySelector("ul");
+        var oListaDestino=oDestino.querySelector("ul");
+        var cb=document.getElementsByTagName("input")[0];
+        //addEventListener
+        oListaOrigen.addEventListener("click", mover, false);
+        oListaDestino.addEventListener("click", mover, false);
+
+        function mover(oEvento)
+        {
+            var oE = oEvento || windows.event;
+            var oRes;
+            console.log(this.parentNode);
+            if(this.parentNode==oOrigen)
+                oRes=oListaDestino;
+            else
+                oRes=oListaOrigen;
+            
+            if(cb.checked)
+                copiarLista(oRes, oE.target);
+            else
+                cambiarLista(oRes, oE.target);
+        }
+
+        function cambiarLista(oLista, oTarget)
+        {              
+            oLista.appendChild(oTarget);
+        }
+        function copiarLista(oLista, oTarget)
+        {
+            oLista.appendChild(oTarget.cloneNode(true));
+        }
+        
+        
+    </script>
+</body>
+
+</html>

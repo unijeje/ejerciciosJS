@@ -1,1 +1,2 @@
 # ejerciciosJS
+Ejercicios clase test
