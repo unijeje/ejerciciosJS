@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>Ejercicio 3</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <style>
+            #cerrar{
+                background: url("cruz.png");
+                background-size: cover;
+                background-repeat: no-repeat;
+                width: 32px;
+                height:32px;
+                position:absolute;
+                left:710px;
+                top:5px;
+            }
+            
+        </style>
+    </head>
+<body>
+
+    <!--3. Se plantea crear una página que incluya un script que muestre un anuncio 
+        (una imagen) en una capa “flotante” que también contendrá un icono de cierre 
+        (por ejemplo la imagen de  un aspa “X”). La capa se mostrará cada 30 segundos
+         si no está visible y el usuario podrá pulsar sobre el icono de cierre para hacerla no visible.-->
+
+
+        <!--<img id="boton" src="cruz.png" alt="Cerrar"/>-->
+
+        <div id="boton">
+            <input type="button" id="cerrar" value="" onclick="cerrarImagen();">
+        </div>
+        
+
+        <div id="anuncio">
+            <img src="anuncio.png"  alt="anuncio"/>
+        </div>
+
+
+        <script type="application/javascript">
+            
+            oAnuncio=document.getElementById("anuncio");
+            oBoton=document.getElementById("boton");
+            var retraso;
+
+            function cerrarImagen()
+            { 
+                clearTimeout(retraso);
+                if(oAnuncio.innerHTML=="")
+                {
+                    oAnuncio.innerHTML="<img src='anuncio.png' alt='anuncio'/>";
+                }
+                else
+                {
+                
+                oAnuncio.innerHTML ="";
+                oBoton.innerHTML=""; //Si se quiere que el boton desaparezca junto con la imagen
+                retraso=setTimeout(abrirImagen, 3000);
+                }
+            }
+            function abrirImagen()
+            {
+                oAnuncio.innerHTML="<img src='anuncio.png' alt='anuncio'/>";
+                oBoton.innerHTML='<input type="button" id="cerrar" value="" onclick="cerrarImagen();">'; //Si se quiere que el boton desaparezca junto con la imagen
+               // oAnuncio.innerHTML=oAnuncio.innerHTML+"<br/>Activo";
+            }
+
+        </script>
+</body>
+
+</html>

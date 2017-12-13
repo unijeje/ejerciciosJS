@@ -1,0 +1,207 @@
+﻿<html>
+<head>
+    <style>
+        #btnadd{
+            height:25px;
+            width:30px;
+        }
+        #btnPasarDer{
+            margin-top:-10%;
+            margin-left:1%;
+            
+        }
+        #btnPasarIzq{
+            margin-top:-7%;
+            margin-left:-2.6%;
+            margin-right:1%;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+     <form  id="formularioAdd" name="formularioAdd">
+        <input type="text" name="txtTexto" id="txtTexto" placeholder="añadir al combo"/>
+        <button type="button" name="btnadd" id="btnadd">+</button>
+    </form>
+       
+    <form action="#" id="formularioCombo" name="formularioCombo">
+        <select id="provinciasIZQ" size="10" multiple="multiple" name="provinciasIZQ">
+            <option value="Lu">
+                Lugo
+            </option>
+            <option value="Ou">
+                Ourense
+            </option>
+            <option value="Po">
+                Pontevedra
+            </option>
+        </select>
+        <input type="button" value=">" name="btnPasarDer" id="btnPasarDer"/>
+        <input type="button" value="<" name="btnPasarIzq" id="btnPasarIzq"/>
+        <select id="provinciasDER" size="10" multiple="multiple" name="provinciasDER">
+            <option value="Se">
+                Sevilla
+            </option>
+            <option value="Ma">
+                Madrid
+            </option>
+        </select>
+
+    </form>
+
+    <table border="1"> <!-- Del combo de la izquierda -->
+        <tr><td id="txtTextoTabla">Texto: </td></tr>
+        <tr><td id="txtValoresTabla">Valores: </td></tr>
+    </table>
+
+<script type="text/javascript">
+
+    formularioAdd.btnadd.addEventListener("click",agregar,false);
+    formularioCombo.btnPasarIzq.addEventListener("click", pasarIzq, false);
+    formularioCombo.btnPasarDer.addEventListener("click", pasarDer, false);
+
+    var oIzquierda = document.getElementById("provinciasIZQ");
+    var oDerecha = document.getElementById("provinciasDER");
+    var oTablaTexto = document.getElementById("txtTextoTabla");
+    var oTablaValores = document.getElementById("txtValoresTabla");
+    
+
+    actualizarTablas();
+
+    function agregar(oEvento)
+    {
+        var oE = oEvento || windows.event;
+        var sText=formularioAdd.txtTexto.value.trim();
+
+        if(formularioAdd.txtTexto.value.length>=2) //solo se añadira si tiene dos o más caracteres para tener suficiente para el value
+        {
+            sValue=sText.substring(0,2);
+           //console.log(sValue);
+
+            var bCheck=false;
+
+            //hacer un for con un boolean sobre todos los elementos del select para ver si ya existe uno con ese value
+            for(var i=0;i<formularioCombo.provinciasIZQ.options.length && bCheck==false;i++)
+            {
+                if(formularioCombo.provinciasIZQ.options[i].text.toUpperCase()==sText.toUpperCase())
+                    bCheck=true;
+            }
+            /*
+            for(var i=0;i<formularioCombo.provinciasDER.options.length && bCheck==false;i++)
+            {
+                if(formularioCombo.provinciasDER.options[i].text==sText)
+                    bCheck=true;
+            }
+            */
+            if(!bCheck)
+            {                   
+                var option = document.createElement("option");
+                option.text = sText;
+                option.value=sValue;
+                oIzquierda.add(option);
+                actualizarTablas();
+                
+            }
+
+
+        }
+    }
+
+    function pasarDer(oEvento)
+    {
+        var oE = oEvento || windows.event;
+        var oListaOption = [];
+
+        for(var i=0;i<oIzquierda.options.length;i++)
+        {
+            if(oIzquierda.options[i].selected==true) //solo seleccionados
+            {
+                oListaOption.push(formularioCombo.provinciasIZQ.options[i]);
+            }
+        }
+
+        for(var j=0;j< oListaOption.length;j++)
+        {
+            if(buscarOptionDerecha(oListaOption[j])==false)
+                oDerecha.add(oListaOption[j]);
+        }
+        
+        actualizarTablas();
+        oE.preventDefault();
+
+    }
+
+    function pasarIzq(oEvento)
+    {
+        var oE = oEvento || windows.event;
+        var oListaOption=[];
+
+        for(var i=0;i<oDerecha.options.length ;i++)
+        {
+            if(oDerecha.options[i].selected==true) //solo seleccionados
+            {   
+                oListaOption.push(formularioCombo.provinciasDER.options[i])     
+            }            
+        }
+                
+        for(var j=0;j< oListaOption.length;j++)
+        {
+            if(buscarOptionIzquierda(oListaOption[j])==false)
+                oIzquierda.add(oListaOption[j]);
+        }
+        actualizarTablas();
+        oE.preventDefault();
+    }
+
+    function actualizarTablas()
+    {
+        var n=formularioCombo.provinciasIZQ.options.length;
+        oTablaTexto.innerHTML="Texto: ";
+        oTablaValores.innerHTML="Valores: ";
+        for(i=0;i<n;i++)
+        {
+           // console.log(i);
+            if(i==n-1)
+            {
+                oTablaTexto.innerHTML+=formularioCombo.provinciasIZQ.options[i].text;
+                oTablaValores.innerHTML+=formularioCombo.provinciasIZQ.options[i].value;
+            }
+            else
+            {
+                oTablaValores.innerHTML+=formularioCombo.provinciasIZQ.options[i].value+", ";
+                oTablaTexto.innerHTML+=formularioCombo.provinciasIZQ.options[i].text+", ";
+            }
+                
+        }
+    }
+
+    function buscarOptionDerecha(oOption)
+    {
+        var bres=false;
+        for(var i=0;i<oDerecha.options.length ;i++)
+        {
+            if(oOption.text.toUpperCase()==oDerecha.options[i].text.toUpperCase())
+                bres=true;
+        }
+        return bres;
+    }
+
+    function buscarOptionIzquierda(oOption)
+    {
+        var bres=false;
+        for(var i=0;i<oIzquierda.options.length ;i++)
+        {
+            if(oOption.text.toUpperCase()==oIzquierda.options[i].text.toUpperCase())
+                bres=true;
+        }
+        return bres;
+    }
+
+</script>
+
+
+</body>
+</html>

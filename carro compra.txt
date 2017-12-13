@@ -1,0 +1,19 @@
+Producto: input text
+Unidades: input text/number
+	Boton Comprar
+
+boton ver carrito
+boton vaciar carrito
+
+
+Cuando pulsas Comprar se guarda en el carrito
+si el producto es el mismo se suma las unidades
+
+
+Listado:
+
+Producto Unidades
+
+
+
+Se guarda en cookies, cuando cierras y abra sigue guardado

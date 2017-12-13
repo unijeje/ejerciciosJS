@@ -1,0 +1,10 @@
+
+Cuadro texto con un boton + al lado
+
+si se le da al boton agrega al select multiple un valor con el texto introducido, el value sera los dos primeros caracteres de la cadena
+solo se introducira si no esta repetido
+
+crear select multiple >(boton) Otro select multiple
+					  <(boton)
+					  
+Si se pulsa el boton se agrega al otro select multiple y se borra (select.add y select.remove) 

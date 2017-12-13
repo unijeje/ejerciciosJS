@@ -1,0 +1,57 @@
+Paleta 4 colores a la izquierda > si clickeas uno aumenta borderWidth para destacarlo > style.borderWidth=5px;
+
+Mientras tengas pulsado click izquierdo fuera de la paleta de colores va pintando del color seleccionado > mouse move + click izquierdo pulsado
+Se van añadiendo capas con +=innerhtml y esas capas se pintan con style.backgroundcolor > oCapaPintado.innerHTML+=<div>...
+
+Con click derecho se borra
+On Mouseover si boton derecho se borra la capa con fondo blanco
+
+Remover menu contextual on click derecho
+
+Pintar:
+
+var oCapaPintado = document.getelementbyid("capapintado");
+oCapaPintado.addEventListener("mousemove", pintar, false);
+oCapaPintado.addEventListener("mousedown", pulsar, false);
+oCapaPintado.addEventListener("mouseup", soltar, false);
+
+var sBoton="";
+
+function soltar()
+{
+	sBoton="";
+}
+
+function pulsar(oEvento)
+{
+	var oE=oEvento || window.event;
+	if(oe.button==0)
+	{
+		consoloe.log("izquierdo");
+		sBoton="izquierdo";
+	}
+	else if(oe.button==2)
+	{
+		console.log("derecho");
+		sBoton="derecho";
+	}
+	else
+	{
+		sBoton="":
+	}
+}
+
+function pintar(oEvento)
+{
+	var oE=oEvento || window.event;
+	
+	if(sBoton=="izquierdo")
+	{
+		consoloe.log("izquierdo"+"["+oE.pageX+","+oE.pageY+"]");
+	}
+	else if(sBoton=="derecho")
+	{
+		console.log("derecho");
+	}
+
+}

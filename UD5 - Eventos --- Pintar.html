@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Sin título 1</title>
+<style>
+#capaPintado {
+	
+	height: 550px;
+	width:88%;
+	border:thin black solid ;
+	float:left;
+	
+}
+
+#capaPinturas{
+	width:10%;
+	border: thin black solid;
+	margin-right:1%;
+	height: 550px;
+	float:left;
+}
+
+#rojo, #azul, #verde, #negro{
+	clear:both;
+	width: 100px;
+	height:100px;
+	margin-top: 5%;
+	margin: thin black solid;
+	margin-left:12%;
+}
+#rojo{
+	background:red;
+}
+#azul{
+	background: blue;
+}
+#verde{
+	background:green;
+}
+#negro{
+	background: black;
+}
+
+#tamaño{
+	margin:5%;
+	margin-left: 30%;
+}
+#tamanyo{
+	position: relative;
+	margin-top: 0;
+	margin-left: 20%;
+}
+
+</style>
+</head>
+
+<body oncontextmenu="return false;">
+
+<div id="capaPinturas">
+	<div id="capaRojo">
+		<form name="pintarRojo" id="pintarRojo" action="#">
+			<input type='button' name="rojo" id="rojo"/>
+		</form>
+	</div>
+	<div id="capaAzul">
+		<form name="pintarAzul" id="pintarAzul" action="#">
+			<input type='button' name="azul" id="azul"/>
+		</form>
+	</div>
+	<div id="capaVerde">
+		<form name="pintarVerde" id="pintarVerde" action="#">
+			<input type='button' name="verde" id="verde"/>
+		</form>
+	</div>
+	<div id="capaNegro">
+		<form name="pintarNegro" id="pintarNegro" action="#">
+			<input type='button' name="negro" id="negro"/>
+		</form>
+		<form name="formTam" id="tamaño" action="#">
+			<p>Cambiar tamaño</p>
+			<input type="button" name="aumentar" id="aumentar" value="+"/>
+			<input type="button" name="dism" id="dism" value="-"/>
+		</form>
+		<p id="tamanyo"></p>
+	</div>
+</div>
+<div id="capaPintado">
+
+
+
+</div>
+
+<script type="text/javascript">
+
+var oCapaPintado = document.getElementById("capaPintado");
+oCapaTamanyo=document.getElementById("tamanyo");
+	
+oCapaPintado.addEventListener("mousemove",pintar,false);
+oCapaPintado.addEventListener("mousedown",pulsar,false);
+oCapaPintado.addEventListener("mouseup",soltar,false);
+pintarRojo.rojo.addEventListener("click", cambiarRojo, false);
+pintarAzul.azul.addEventListener("click", cambiarAzul, false);
+pintarVerde.verde.addEventListener("click", cambiarVerde, false);
+pintarNegro.negro.addEventListener("click", cambiarNegro, false);
+formTam.aumentar.addEventListener("click", masTam, false);
+formTam.dism.addEventListener("click", menosTam, false);
+
+var sBoton =  "";
+var color="white";
+var tamaño=10;
+oCapaTamanyo.innerHTML="tamaño: "+tamaño;
+
+function masTam(oEvento)
+{
+	var oE = oEvento || windows.event;
+	tamaño+=3;
+	oCapaTamanyo.innerHTML="tamaño: "+tamaño;
+	oE.preventDefault();
+
+}
+
+function menosTam(oEvento)
+{
+	var oE = oEvento || windows.event;
+	tamaño-=3;
+	oCapaTamanyo.innerHTML="tamaño: "+tamaño;
+	oE.preventDefault();
+}
+
+function cambiarRojo(oEvento)
+{
+	var oE = oEvento || windows.event;
+	color="red";
+	pintarRojo.rojo.style.boxShadow="0 1px 5px 0 #000";
+	pintarAzul.azul.style.boxShadow="0 1px 0px 0 #000";
+	pintarVerde.verde.style.boxShadow="0 1px 0px 0 #000";
+	pintarNegro.negro.style.boxShadow="0 1px 0px 0 #000";
+	//alert("red");
+	oE.preventDefault();
+}
+
+function cambiarAzul(oEvento)
+{
+	var oE = oEvento || windows.event;
+	pintarRojo.rojo.style.boxShadow="0 1px 0px 0 #000";
+	pintarAzul.azul.style.boxShadow="0 1px 5px 0 #000";
+	pintarVerde.verde.style.boxShadow="0 1px 0px 0 #000";
+	pintarNegro.negro.style.boxShadow="0 1px 0px 0 #000";
+	color="blue";
+	//alert("blue");
+	oE.preventDefault();
+}
+
+function cambiarVerde(oEvento)
+{
+	var oE = oEvento || windows.event;
+	color="green";
+	pintarRojo.rojo.style.boxShadow="0 1px 0px 0 #000";
+	pintarAzul.azul.style.boxShadow="0 1px 0px 0 #000";
+	pintarVerde.verde.style.boxShadow="0 1px 5px 0 #000";
+	pintarNegro.negro.style.boxShadow="0 1px 0px 0 #000";
+	//alert("green");
+	oE.preventDefault();
+}
+
+function cambiarNegro(oEvento)
+{
+	var oE = oEvento || windows.event;
+	color="black";
+	pintarRojo.rojo.style.boxShadow="0 1px 0px 0 #000";
+	pintarAzul.azul.style.boxShadow="0 1px 0px 0 #000";
+	pintarVerde.verde.style.boxShadow="0 1px 0px 0 #000";
+	pintarNegro.negro.style.boxShadow="0 1px 5px 0 #000";
+	//alert("green");
+	oE.preventDefault();
+}
+
+function soltar(){
+	
+	sBoton = "";
+}
+
+function pulsar(oEvento){
+
+	var oE = oEvento || window.event;
+	
+	if (oE.button == 0){
+		console.log("izquierdo");
+		sBoton = "izquierdo";
+	} else if(oE.button == 2){
+		console.log("derecho");
+		sBoton = "derecho";
+	} else{
+		sBoton ="";
+	}
+}
+
+function pintar(oEvento){
+
+	var oE = oEvento || window.event;
+	
+	if (sBoton == "izquierdo")
+	{ //pintar
+		var altura=oE.pageY;
+		var derecha=oE.pageX;
+		//console.log("izquierdo" + "[" + oE.pageX + "," + oE.pageY + "]");
+
+		var style="position: absolute; top:"+altura+"px; left:"+derecha+"px; width:"+tamaño+"px; height:"+tamaño+"px; background:"+color+";";
+		oCapaPintado.innerHTML+='<div style="'+style+'"</div>';
+	}
+	else if(sBoton == "derecho")
+	{//borrar
+		var altura=oE.pageY;
+		var derecha=oE.pageX;
+	//	console.log("derecho"+ "[" + oE.pageX + "," + oE.pageY + "]");
+		var style="position: absolute; top:"+altura+"px; left:"+derecha+"px; width:"+tamaño+"px; height:"+tamaño+"px; background:white;";
+		oCapaPintado.innerHTML+='<div style="'+style+'"</div>';
+
+
+	}
+
+	
+
+}
+
+</script>
+
+</body>
+
+</html>
