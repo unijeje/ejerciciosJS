@@ -1,0 +1,9 @@
+crear 4 capas con borde y data-texto
+
+data-texto="sinopsis"
+
+[titanic] [popeye]
+
+[heidi]   [dragonball]
+
+on mouseover que aparezca otra capa en la esquina abajo derecha que muestre el data-texto

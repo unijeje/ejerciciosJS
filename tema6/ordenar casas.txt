@@ -1,0 +1,26 @@
+	
+	
+a	<div class="casa" data-precio="precio">  <select> Escoge metodo ordenacion </select>
+		<img>
+		<p> precio...</p>
+	</div>
+b	<div class="casa" dataset=precio>
+		<img>
+		<p> precio...</p>
+	</div>
+c	<div class="casa" dataset=precio>
+		<img>
+		<p> precio...</p>
+	</div>
+d	<div class="casa" dataset=precio>
+		<img>
+		<p> precio...</p>
+	</div>
+	
+	oCapas=document.querySelector(".casa");
+	
+	oCapas(a, b, c, d) > Ordenar por precio > oCapas(c,d,a,b)
+	array.sort
+	
+	
+	

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>UD6 -hojas de estilo</title>
+
+</head>
+
+<body>
+
+        <p>Hola</p>
+        <input type="button" value="estilos0" name="est1" id="est1"/>
+        <input type="button" value="estilos1" name="est2" id="est2"/>
+        <input type="button" value="estilos2" name="est3" id="est3"/>
+
+        <script type="text/javascript">
+            //var oTexto = document.querySelector("p");
+            var oBotton=document.querySelectorAll("input");
+
+            for(var i=0;i<oBotton.length;i++)
+                oBotton[i].addEventListener("click", cambiar, false);
+
+            function cambiar(oEvento)
+            {
+                var oE = oEvento || windows.event;
+                if(document.getElementById("css")!=null)
+                    document.getElementsByTagName("head")[0].removeChild(document.getElementById("css"));
+               // console.log(this.value);
+                var link = document.createElement("link");
+                link.rel="stylesheet";
+                link.id="css";
+                link.href=this.value+".css";
+                document.getElementsByTagName("head")[0].appendChild(link);
+            }
+            
+        </script>
+
+</body>
+
+</html>

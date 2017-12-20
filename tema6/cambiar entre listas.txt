@@ -1,0 +1,22 @@
+No se puede usar inner/outer html
+Cuando se clickee un li cambia a la otra lista en el <li> que has clickado
+declarar onclick sobre ul y hacer on target https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_event_target
+tambien querySelector("#origen_ul")
+div{
+	width:200px;
+	height:200px;
+	float:left;
+}
+
+<div id="origen">
+	<ul>
+		<li>Uno</li>
+		<li>Dos</li>
+		<li>Tres</li>
+	</ul>
+</div>
+<div id="destino">
+	<ul></ul>
+</div>
+
+checkbox > creaer copia en el otro lado

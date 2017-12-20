@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>UD6 - Ordenar una lista de capas</title>
+    <style>
+        .casa {
+            border: black 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <select id="criterio">
+        <option value="precio">Precio</option>
+        <option value="preciom2">Precio m2</option>
+    </select>
+
+    <div id="contenedor">
+        <div class="casa" data-precio="100000" data-precio-m2="1500">
+            <p>Precio: 100000</p>
+            <p>Precio por m2: 1500 </p>
+        </div>
+        <div class="casa" data-precio="200000" data-precio-m2="500">
+            <p>Precio: 200000</p>
+            <p>Precio por m2: 500 </p>
+        </div>
+        <div class="casa" data-precio="175000" data-precio-m2="715">
+            <p>Precio: 175000</p>
+            <p>Precio por m2: 715 </p>
+        </div>
+        <div class="casa" data-precio="90000" data-precio-m2="1000">
+            <p>Precio: 90000</p>
+            <p>Precio por m2: 1000 </p>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var oCombo=document.getElementById("criterio");
+        var listaCasasOrdenado=[];
+        var listaPrecioOrdenado=[];
+        oCasas=document.querySelectorAll(".casa");
+        oCombo.addEventListener("change", moveCombo, false);
+
+
+        function moveCombo()
+        {  
+            listaPrecioOrdenado=[];
+            listaCasasOrdenado=[];
+           // alert("se ha cambiado el combo");
+           
+           
+           var oSeleccionado=oCombo.value;
+           if (oSeleccionado=="precio")
+               ordenarPorPrecio();
+           else if(oSeleccionado=="preciom2")
+               ordenarporM2();
+        }
+
+        function ordenarPorPrecio()
+        {
+           // alert("precio");
+            for(var i=0;i<oCasas.length;i++)
+                listaPrecioOrdenado.push(parseInt(oCasas[i].dataset.precio));
+
+            listaPrecioOrdenado.sort(sortNumber); 
+
+            for(var i=0;i<listaPrecioOrdenado.length;i++)
+            {
+                for(var j=0;j<oCasas.length;j++)
+                {
+                    if(oCasas[j].dataset.precio==listaPrecioOrdenado[i])
+                        listaCasasOrdenado[i]=oCasas[j];
+                }
+            }
+
+            insertar();
+
+        }
+        function ordenarporM2()
+        {
+          //  alert("M2");
+            for(var i=0;i<oCasas.length;i++)
+                listaPrecioOrdenado.push(parseInt(oCasas[i].dataset.precioM2));
+
+            listaPrecioOrdenado.sort(sortNumber); 
+
+            for(var i=0;i<listaPrecioOrdenado.length;i++)
+            {
+                for(var j=0;j<oCasas.length;j++)
+                {
+                    if(oCasas[j].dataset.precioM2==listaPrecioOrdenado[i])
+                        listaCasasOrdenado[i]=oCasas[j];
+                }
+            }
+            insertar();
+
+        }
+
+        function insertar()
+        {
+            //console.log(oCasas);
+            //console.log(listaPrecioOrdenado);
+            
+            console.log("Resultado: ");
+            for(var i=0;i<listaCasasOrdenado.length;i++)
+            {
+                //console.log(listaCasasOrdenado[i].dataset.precio);
+                //console.log(listaCasasOrdenado[i].dataset.preciom2);
+                console.log(listaCasasOrdenado[i]);
+            } 
+                
+           var oContenedor =document.querySelector("#contenedor");
+
+           for(var i=0;i<oCasas.length;i++)
+                oContenedor.appendChild(listaCasasOrdenado[i]);
+
+        }
+
+        function sortNumber(a,b) {
+            return a - b;
+        }
+
+        
+    
+    </script>
+
+</body>
+
+</html>

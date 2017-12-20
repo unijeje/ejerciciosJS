@@ -1,0 +1,5 @@
+<p> HOLA </p>
+3 botones(estilo1, estilo2, estilo3)
+
+cuando se pulsa un boton se añade un <link href="estilo1.css/estilo2.css/estilo3.css" dependiendo del boton
+se crea una nueva etiqueta link cada vez que se pulsa el boton y eliminas el anterior

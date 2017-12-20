@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>UD6 - Ordenar una lista de capas</title>
+    <style>
+        .pelicula
+        {
+            padding:20px;
+            background-color:gray;
+            margin:10px;
+            height:100px;
+            width:150px;
+            text-align: center;
+        }
+
+        #peli1{
+            position:absolute;
+            left: 50px;
+            top:50px;
+        }
+
+        #peli2{
+            position:absolute;
+            left: 300px;
+            top:50px;
+        }
+
+        #peli3{
+            position:absolute;
+            left: 50px;
+            top:200px;
+        }
+
+        #peli4{
+            position:absolute;
+            left: 300px;
+            top:200px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="pelicula" id="peli1" data-texto="sinopsis">
+        <p>Titanic</p>
+    </div>
+
+    <div class="pelicula" id="peli2" data-texto="sinopsis">
+        <p>Popeye</p>
+    </div>
+
+    <div class="pelicula" id="peli3" data-texto="sinopsis">
+        <p>Heidi</p>
+    </div>
+
+    <div class="pelicula" id="peli4" data-texto="sinopsis">
+        <p>Dragon ball</p>
+    </div>
+
+
+    <script type="text/javascript">
+        var oPelicula=document.querySelectorAll(".pelicula");
+        for(var i=0;i<oPelicula.length;i++)
+        {
+            oPelicula[i].addEventListener("mouseover", entrar, false);
+            oPelicula[i].addEventListener("mouseout", salir, false);
+        }
+            
+
+        function entrar()
+        {
+            console.log(this);
+            var oDiv=document.createElement("div");
+            this.appendChild(oDiv);
+            //append class to that div, add styles
+        }
+        function salir()
+        {
+            console.log("salir");
+        }
+    
+    </script>
+
+</body>
+
+</html>
