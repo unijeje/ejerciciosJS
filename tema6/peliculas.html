@@ -38,6 +38,18 @@
             left: 300px;
             top:200px;
         }
+        .sinopsis{
+            position:relative;
+            left:200px;
+            top:100px;
+            padding:20px;
+            background-color:blue;
+            margin:10px;
+            height:100px;
+            width:120px;
+            text-align: center;
+            border:1px solid red;
+        }
     </style>
 </head>
 
@@ -57,6 +69,9 @@
 
     <div class="pelicula" id="peli4" data-texto="sinopsis">
         <p>Dragon ball</p>
+        <div class="sinopsis">
+            <p>Sinopsis</p>
+        </div>
     </div>
 
 
@@ -71,14 +86,18 @@
 
         function entrar()
         {
-            console.log(this);
+           // console.log(this);
             var oDiv=document.createElement("div");
+            oDiv.classList.add("sinopsis");
+            oDiv.appendChild(document.createTextNode(this.dataset.texto));
             this.appendChild(oDiv);
             //append class to that div, add styles
         }
-        function salir()
+        function salir(oEvento)
         {
-            console.log("salir");
+            var oE = oEvento || windows.event;
+            console.log(oE.target);
+            //this.removeChild(this.lastChild());
         }
     
     </script>
